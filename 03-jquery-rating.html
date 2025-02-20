@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>   
+    
+    <link rel="stylesheet" href="css/style3.css">
+    
+    <script src="js/jquery.js"></script>
+    <script>
+      $(document).ready(function(){
+
+        $(".star").click(function(){
+          
+          const value = $(this).attr("data-value");
+          $(".star").removeClass("red");
+
+          $(".star").each((index, elem) => {
+            const itemValue = $(elem).attr("data-value");
+            
+            // I see a black star and I want it painted-
+            if(itemValue <= value){
+              $(elem).addClass("red");
+            }
+          });
+        
+          $.ajax({
+            url: "https://api.dev-master.ninja/js/rating",
+            method: "POST",
+            data: {rating: value},
+            success: function(result){
+              /* JSON object looks like: 
+                  {
+                      success: true,
+                      result: 4,
+                      rating: 3 
+                  }
+              */
+
+              const avgRating = result['result'];
+              console.log(avgRating);
+            }
+
+          });
+
+        });
+
+      });
+
+    </script>
+  </head>
+  <body>
+
+    <div style="height: 300px;"></div>
+    <div style="margin-left: 300px;">
+
+      <span class="star" data-value="1">*</span>
+      <span class="star" data-value="2">*</span>
+      <span class="star" data-value="3">*</span>
+      <span class="star" data-value="4">*</span>
+      <span class="star" data-value="5">*</span>
+
+    </div>
+
+  </body>
+</html>
