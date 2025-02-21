@@ -1,0 +1,8 @@
+{
+    "slides": [
+        {"src": "https://picsum.photos/id/1/1900/1200", "title": "laptop", "subtitle": "sb1"},
+        {"src": "https://picsum.photos/id/10/1900/1200", "title": "forest", "subtitle": "sb2"},
+        {"src": "https://picsum.photos/id/100/1900/1200", "title": "view", "subtitle": "sb3"},
+        {"src": "images/babygoat.jpg", "title": "Baby goats", "subtitle": "Goats are extremely underrated creatures, look how cute they are!"}
+    ]
+}
