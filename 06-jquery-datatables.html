@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>  
+    <title>Dynamic Table</title>
+    <link rel="stylesheet" href="./css/style.css" />  
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" /> 
+    <script src="./js/jquery.js"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script>
+      $(document).ready( function() {
+
+        const dTable = $("#theBeatles").DataTable({
+            ajax: "https://api.dev-master.ninja/js/beatles",
+            // data is put in columns in the HTML in order of appearance
+            columns: [
+              { data: "id"},
+              { data: "firstname" },
+              { data: "lastname"},
+              { data: "dateOfBirth"},
+              { data: "email" }
+            ] 
+          })
+
+          // setInterval is vanilla JS, datatable-object.ajax.reload() is from the Datatable plugin
+          setInterval( function () {
+            dTable.ajax.reload()
+          }, 10000 ) // in delay in ms
+
+        })  
+    
+    </script>
+  </head>
+  <body>
+
+    <form action="https://api.dev-master.ninja/js/person/save" method="POST">
+      <label>First name<input type="text" name="firstname"></label>
+      <label>Last name<input type="text" name="lastname"></label>
+      <label>Email<input type="email" name="email"></label>
+      <input type="submit" value="submit">
+    </form>
+
+    <table id="theBeatles" class="display nowrap dataTable dtr-inline collapsed">
+      <thead>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Date of Birth</th>
+        <th>Email</th>
+        <th>Instrument</th>
+      </thead>
+      <tbody> 
+      </tbody>
+      </table>
+  </body>
+</html>
